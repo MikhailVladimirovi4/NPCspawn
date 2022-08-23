@@ -5,14 +5,16 @@ public class NPCgenerator : MonoBehaviour
 {
     [SerializeField] private int _numberNPC;
     [SerializeField] private Transform _respawn;
-    [SerializeField] private GameObject _npc;
 
     private Transform[] _spawnPointsTransform;
     private readonly int _delayTime = 2;
+    private readonly Thief _npc = new Thief();
+    private WaitForSeconds _spawnPause;
 
     private void Start()
     {
         _spawnPointsTransform = new Transform[_respawn.childCount];
+        _spawnPause = new WaitForSeconds(_delayTime);
 
         for (int i = 0; i < _respawn.childCount; i++)
             _spawnPointsTransform[i] = _respawn.GetChild(i).transform;
@@ -26,7 +28,7 @@ public class NPCgenerator : MonoBehaviour
         {
             Instantiate(_npc, _spawnPointsTransform[i % _respawn.childCount].position, Quaternion.identity);
 
-            yield return new WaitForSeconds(_delayTime);
+            yield return _spawnPause;
         }
     }
 }
