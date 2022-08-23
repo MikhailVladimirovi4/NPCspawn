@@ -5,10 +5,10 @@ public class NPCgenerator : MonoBehaviour
 {
     [SerializeField] private int _numberNPC;
     [SerializeField] private Transform _respawn;
+    [SerializeField] private Thief _npc;
 
     private Transform[] _spawnPointsTransform;
     private readonly int _delayTime = 2;
-    private readonly Thief _npc = new Thief();
     private WaitForSeconds _spawnPause;
 
     private void Start()
