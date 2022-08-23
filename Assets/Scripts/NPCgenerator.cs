@@ -8,6 +8,7 @@ public class NPCgenerator : MonoBehaviour
     [SerializeField] private GameObject _npc;
 
     private Transform[] _spawnPointsTransform;
+    private readonly int _delayTime = 2;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class NPCgenerator : MonoBehaviour
         {
             Instantiate(_npc, _spawnPointsTransform[i % _respawn.childCount].position, Quaternion.identity);
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(_delayTime);
         }
     }
 }
